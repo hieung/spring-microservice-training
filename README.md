@@ -6,16 +6,16 @@ Container Docker
 ----------------------------------------------
 docker pull postgres
 
-docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+docker run --name postgres-msa -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
 docker pull rabbitmq
 
-docker run -d --hostname my-rabbit --name some-rabbit -p 8080:15672 rabbitmq:3-management
+docker run -d --hostname my-rabbit --name rabbit-msa rabbitmq:3-management -p 5672:5672 -p 15672:15672
 
 Database Configuration
 ----------------------------------------------
 - Start Postgres service in localhost on port 5432
-- Make sure there is a user 'postgres' with no password
+- Make sure there is a user 'postgres' with mysecretpassword
 - Under 'postgres' user, execute setup/build_db.sql to set up new DB and load dummy data
 
 Build all projects using the pom.xml at the root level. 
